@@ -1,0 +1,8 @@
+.container {
+  width: 100%;  /* Troque de 100vw para 100% */
+  max-width: 1280px;
+  margin: 1rem auto 0; /* margin-top de 6rem + centralizado */
+  padding: 2rem 1rem; /* padding interno */
+  height: calc(100vh - 100px);
+
+}

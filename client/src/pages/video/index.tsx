@@ -1,0 +1,103 @@
+import toast from "react-hot-toast";
+import { Container } from "../../components/container";
+import styles from "./styles.module.css";
+
+import { useState } from "react";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import { ModalMedia } from "../../components/modal-media";
+
+export function Video() {
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState<false | true>(false);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setVideoFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!videoFile) {
+      toast.error("Selecione um vídeo primeiro!");
+      return;
+    }
+
+    try {
+      setIsDisabled(true);
+      const formData = new FormData();
+      formData.append("video", videoFile);
+
+      const response = await fetch("http://localhost:3333/api/video/stream", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        toast.error("Erro ao extrair o audio");
+        setIsDisabled(false);
+        return;
+      }
+
+      //recebe áudio como blob (mp3)
+      const blob = await response.blob();
+
+      //cria URL temporária
+      const url = URL.createObjectURL(blob);
+
+      setAudioUrl(url);
+      toast.success("Audio gerado com sucesso");
+      setShowModal(true);
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao extrair o audio");
+    } finally {
+      setIsDisabled(false);
+    }
+  };
+
+  return (
+    <Container>
+      <section className={styles.container}>
+        <h1 className={styles.title}>Extraia o áudio do seu video</h1>
+        <p className={styles.description}>
+          Envie um video de até 10mb, e extraia o audio para um arquivo texto.
+        </p>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <label className={styles.videoInputWrapper}>
+            <input
+              type="file"
+              accept="video/*"
+              className={styles.inputFile}
+              onChange={handleFileChange}
+            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                width: "100%",
+              }}
+            >
+              <FaCloudUploadAlt className={styles.videoInputIcon} />
+              <span className={styles.videoInputText}>
+                {videoFile
+                  ? videoFile.name
+                  : "Clique ou arraste para enviar o vídeo"}
+              </span>
+            </div>
+          </label>
+          <button className={styles.button} type="submit" disabled={isDisabled}>
+            {isDisabled ? "Extraindo..." : "Extrair"}
+          </button>
+        </form>
+
+        {audioUrl && showModal && (
+          <ModalMedia audioUrl={audioUrl} setShowModal={setShowModal} />
+        )}
+      </section>
+    </Container>
+  );
+}

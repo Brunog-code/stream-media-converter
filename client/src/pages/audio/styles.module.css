@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(94, 89, 89);
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.description {
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 180px;
+  max-width: 400px;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #3b82f6;
+  background: #e0f2fe;
+  color: #1e3a8a;
+  font-size: 1rem;
+  resize: none;
+  transition: border 0.2s;
+}
+.textarea:focus {
+  outline: none;
+  border: 2px solid #2563eb;
+  background: #bae6fd;
+}
+
+.button {
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.08);
+  transition:
+    background 0.2s,
+    transform 0.1s;
+}
+.button:hover {
+  background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.genderButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.genderButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e0e7ff;
+  color: #1e3a8a;
+  border: 2px solid #3b82f6;
+  border-radius: 6px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border 0.2s,
+    color 0.2s;
+}
+.genderButton.selected,
+.genderButton:focus {
+  background: #2563eb;
+  color: #fff;
+  border: 2px solid #1e40af;
+  outline: none;
+}
+.genderButton:hover {
+  background: #3b82f6;
+  color: #fff;
+}
