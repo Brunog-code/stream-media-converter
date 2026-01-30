@@ -13,7 +13,6 @@ export function Audio() {
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [showModal, setShowModal] = useState<false | true>(false);
   const [isDisabled, setIsDisabled] = useState<false | true>(false);
-  
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= maxChars) {
@@ -53,7 +52,10 @@ export function Audio() {
       toast.success("Audio gerado com sucesso");
       setShowModal(true);
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof TypeError) {
+        // Fetch falhou (geralmente network error)
+        toast.error("Não foi possível conectar ao servidor");
+      } else if (error instanceof Error) {
         toast.error(error.message);
       }
 
