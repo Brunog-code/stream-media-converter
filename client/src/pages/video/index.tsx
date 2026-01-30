@@ -22,7 +22,7 @@ export function Video() {
     e.preventDefault();
 
     if (!videoFile) {
-      toast.error("Selecione um vídeo primeiro!");
+      toast.error("Selecione um vídeo.");
       return;
     }
 
@@ -63,7 +63,7 @@ export function Video() {
       <section className={styles.container}>
         <h1 className={styles.title}>Extraia o áudio do seu video</h1>
         <p className={styles.description}>
-          Envie um video de até 10mb, e extraia o audio para um arquivo texto.
+          Envie um video de até 10mb, e extraia o áudio.
         </p>
         <form className={styles.form} onSubmit={handleSubmit}>
           <label className={styles.videoInputWrapper}>

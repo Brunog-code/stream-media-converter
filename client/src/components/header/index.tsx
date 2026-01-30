@@ -6,7 +6,7 @@ export function Header() {
     <header className={styles.container}>
       <div className={styles.content}>
         <h1 className={styles.logo}>
-          <span className={styles.logo_first}>STREAM </span>TEST
+          <span className={styles.logo_first}>STREAM </span>MEDIA
         </h1>
 
         <nav>
@@ -18,7 +18,7 @@ export function Header() {
                   isActive ? `${styles.link} ${styles.active}` : styles.link
                 }
               >
-                Audio
+                Áudio
               </NavLink>
             </li>
 
