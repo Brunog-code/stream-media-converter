@@ -71,7 +71,7 @@ export function Audio() {
         <h1 className={styles.title}>Transforme seu texto em áudio</h1>
         <p className={styles.description}>
           Escolha o gênero da voz, insira um texto de até 250 caracteres, e
-          clique em enviar.
+          clique em gerar.
         </p>
         <div className={styles.genderButtons}>
           <button
