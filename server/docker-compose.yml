@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    container_name: speech-server
+    ports:
+      - "3333:3333"
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./tmp/videos:/app/tmp/videos

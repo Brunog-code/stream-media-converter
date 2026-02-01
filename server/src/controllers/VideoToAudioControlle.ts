@@ -1,4 +1,4 @@
-import { VideoToAudioService } from "../services/VideoToTextService.js";
+import { VideoToAudioService } from "../services/VideoToAudioService.js";
 import { Response, Request } from "express";
 import fs from "fs";
 
@@ -17,16 +17,22 @@ export class VideoToAudioController {
       res.setHeader("Content-Type", "audio/mpeg");
       res.setHeader("Content-Disposition", `inline; filename="audio.mp3"`);
 
-      //stream direto FFmpeg → response
+      // ✅ Função única de limpeza (remove o vídeo)
+      const cleanup = () => {
+        if (fs.existsSync(videoPath)) {
+          fs.unlinkSync(videoPath);
+          console.log("🗑 Vídeo removido:", videoPath);
+        }
+      };
+
+      // ✅ Se terminar normalmente → remove arquivo
+      res.on("finish", cleanup);
+
+      // ✅ Se o usuário cancelar no meio → remove também
+      res.on("close", cleanup);
+
+      // 🎵 Stream FFmpeg → Response
       await this.videoToAudioService.stream(videoPath, res);
-
-      //remove vídeo depois
-      fs.unlinkSync(videoPath);
-
-      //remove vídeo depois que terminar
-      res.on("finish", () => {
-        fs.unlinkSync(videoPath);
-      });
     } catch (error) {
       console.error(error);
 

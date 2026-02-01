@@ -2,7 +2,7 @@ import { Router } from "express";
 import { TextToSpeechController } from "./controllers/TextToSpeechController.js";
 import { TextToSpeechService } from "./services/TextToSpeechService.js";
 import { rateLimite } from "./middlewares/rateLimitMiddleware.js";
-import { VideoToAudioService } from "./services/VideoToTextService.js";
+import { VideoToAudioService } from "./services/VideoToAudioService.js";
 import { VideoToAudioController } from "./controllers/VideoToAudioControlle.js";
 import uploadConfig from "./config/multer.js";
 import multer from "multer";
