@@ -25,8 +25,8 @@ export function Audio() {
 
     try {
       setIsDisabled(true);
-      if (text.length < 5) {
-        toast.error("Favor inserir ao menos 5 letras");
+      if (text.length < 10) {
+        toast.error("Favor inserir ao menos 10 letras");
         setIsDisabled(false);
         return;
       }

@@ -4,8 +4,8 @@ export class TextToSpeechService {
       throw new Error("Tamanho excedido.");
     }
 
-    if (text.length < 5) {
-      throw new Error("Tamanho minimo 5 letras.");
+    if (text.length < 10) {
+      throw new Error("Tamanho minimo 10 letras.");
     }
 
     if (gender !== "female" && gender !== "male") {
