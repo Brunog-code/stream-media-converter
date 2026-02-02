@@ -25,16 +25,19 @@ export function Audio() {
 
     try {
       setIsDisabled(true);
-      if (text.length < 10) {
-        toast.error("Favor inserir ao menos 10 letras");
+      if (text.length < 25) {
+        toast.error("Favor inserir ao menos 30 caracteres");
         setIsDisabled(false);
         return;
       }
-      const response = await fetch("https://speech-api.brunogcode.com.br/api/audio/stream", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, gender }),
-      });
+      const response = await fetch(
+        "https://speech-api.brunogcode.com.br/api/audio/stream",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text, gender }),
+        },
+      );
 
       // Verifica se deu certo
       if (!response.ok) {
@@ -70,7 +73,7 @@ export function Audio() {
       <section className={styles.container}>
         <h1 className={styles.title}>Transforme seu texto em áudio</h1>
         <p className={styles.description}>
-          Escolha o gênero da voz, insira um texto de até 250 caracteres, e
+          Escolha o gênero da voz, insira um texto entre 25 e 250 caracteres, e
           clique em gerar.
         </p>
         <div className={styles.genderButtons}>

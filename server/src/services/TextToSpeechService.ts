@@ -1,11 +1,11 @@
 export class TextToSpeechService {
   async execute(text: string, gender: string) {
-    if (text.length > 240) {
+    if (text.length > 250) {
       throw new Error("Tamanho excedido.");
     }
 
-    if (text.length < 10) {
-      throw new Error("Tamanho minimo 10 letras.");
+    if (text.length < 25) {
+      throw new Error("Tamanho minimo 25 letras.");
     }
 
     if (gender !== "female" && gender !== "male") {
