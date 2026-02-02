@@ -26,7 +26,7 @@ export function Audio() {
     try {
       setIsDisabled(true);
       if (text.length < 25) {
-        toast.error("Favor inserir ao menos 30 caracteres");
+        toast.error("Favor inserir ao menos 25 caracteres");
         setIsDisabled(false);
         return;
       }
