@@ -30,7 +30,7 @@ export function Audio() {
         setIsDisabled(false);
         return;
       }
-      const response = await fetch("http://localhost:3333/api/audio/stream", {
+      const response = await fetch("https://speech-api.brunogcode.com.br/api/audio/stream", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text, gender }),

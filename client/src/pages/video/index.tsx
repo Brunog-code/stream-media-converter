@@ -31,7 +31,7 @@ export function Video() {
       const formData = new FormData();
       formData.append("video", videoFile);
 
-      const response = await fetch("http://localhost:3333/api/video/stream", {
+      const response = await fetch("https://speech-api.brunogcode.com.br/api/video/stream", {
         method: "POST",
         body: formData,
       });
