@@ -26,7 +26,7 @@ export default {
       cb(null, true);
     } else {
       cb(
-        new Error("Formato inválido. Envie apenas vídeos MP4, MKV ou WebM."),
+        new Error("Formato inválido. Envie apenas vídeos MP4 ou WebM."),
         false,
       );
     }

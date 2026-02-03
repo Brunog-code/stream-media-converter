@@ -14,8 +14,24 @@ export function Video() {
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [showModal, setShowModal] = useState<false | true>(false);
 
+  const MAX_SIZE = 30 * 1024 * 1024; // 30MB
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+
+      if (file.size > MAX_SIZE) {
+        toast.error("Arquivo muito grande! O limite é de 30MB.");
+        e.target.value = ""; // Limpa o input
+        return;
+      }
+
+      const allowedTypes = ["video/mp4", "video/webm"];
+      if (!allowedTypes.includes(file.type)) {
+        toast.error("Formato inválido! Envie apenas vídeos MP4 ou WebM.");
+        e.target.value = ""; // Limpa o input
+        return;
+      }
       setVideoFile(e.target.files[0]);
     }
   };
