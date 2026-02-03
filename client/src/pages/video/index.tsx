@@ -2,6 +2,8 @@ import toast from "react-hot-toast";
 import { Container } from "../../components/container";
 import styles from "./styles.module.css";
 
+import ImgVideo from "../../assets/audio-video.webp";
+
 import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { ModalMedia } from "../../components/modal-media";
@@ -31,10 +33,13 @@ export function Video() {
       const formData = new FormData();
       formData.append("video", videoFile);
 
-      const response = await fetch("https://speech-api.brunogcode.com.br/api/video/stream", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://speech-api.brunogcode.com.br/api/video/stream",
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
       if (!response.ok) {
         toast.error("Erro ao extrair o audio");
         setIsDisabled(false);
@@ -61,42 +66,51 @@ export function Video() {
   return (
     <Container>
       <section className={styles.container}>
-        <h1 className={styles.title}>Extraia o áudio do seu video</h1>
-        <p className={styles.description}>
-          Envie um video de até 20mb, e extraia o áudio.
-        </p>
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <label className={styles.videoInputWrapper}>
-            <input
-              type="file"
-              accept="video/*"
-              className={styles.inputFile}
-              onChange={handleFileChange}
-            />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                width: "100%",
-              }}
+        <div  className={styles.content_container}>
+          <h1 className={styles.title}>Extraia o áudio do seu video</h1>
+          <p className={styles.description}>
+            Envie um video de até 20mb, e extraia o áudio.
+          </p>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <label className={styles.videoInputWrapper}>
+              <input
+                type="file"
+                accept="video/*"
+                className={styles.inputFile}
+                onChange={handleFileChange}
+              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                <FaCloudUploadAlt className={styles.videoInputIcon} />
+                <span className={styles.videoInputText}>
+                  {videoFile
+                    ? videoFile.name
+                    : "Clique ou arraste para enviar o vídeo"}
+                </span>
+              </div>
+            </label>
+            <button
+              className={styles.button}
+              type="submit"
+              disabled={isDisabled}
             >
-              <FaCloudUploadAlt className={styles.videoInputIcon} />
-              <span className={styles.videoInputText}>
-                {videoFile
-                  ? videoFile.name
-                  : "Clique ou arraste para enviar o vídeo"}
-              </span>
-            </div>
-          </label>
-          <button className={styles.button} type="submit" disabled={isDisabled}>
-            {isDisabled ? "Extraindo..." : "Extrair"}
-          </button>
-        </form>
+              {isDisabled ? "Extraindo..." : "Extrair"}
+            </button>
+          </form>
 
-        {audioUrl && showModal && (
-          <ModalMedia audioUrl={audioUrl} setShowModal={setShowModal} />
-        )}
+          {audioUrl && showModal && (
+            <ModalMedia audioUrl={audioUrl} setShowModal={setShowModal} />
+          )}
+        </div>
+        <div className={styles.img_container}>
+          <img src={ImgVideo} alt="Imagem representando video e microfone" />
+        </div>
       </section>
     </Container>
   );
