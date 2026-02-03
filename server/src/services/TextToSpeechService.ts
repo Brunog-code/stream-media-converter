@@ -25,6 +25,7 @@ export class TextToSpeechService {
         input: text,
         voice_id: `${gender == "male" ? "danilo" : "estela"}`,
         model: "simba-multilingual",
+        language: "pt-BR",
       }),
     };
 
