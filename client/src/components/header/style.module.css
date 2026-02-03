@@ -16,7 +16,7 @@
 }
 
 .logo {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 800;
   transition: transform 300ms;
   transform-origin: left center; /* expande a partir da esquerda */
@@ -32,7 +32,7 @@
 
 .container_link {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   list-style: none;
 }
 

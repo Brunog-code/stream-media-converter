@@ -11,7 +11,7 @@ export default {
   }),
 
   limits: {
-    fileSize: 20 * 1024 * 1024, //até 20mb
+    fileSize: 30 * 1024 * 1024, //até 30mb
   },
 
   fileFilter: (req: any, file: Express.Multer.File, cb: any) => {
