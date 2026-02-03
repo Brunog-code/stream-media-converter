@@ -22,19 +22,18 @@ export function Video() {
 
       if (file.size > MAX_SIZE) {
         toast.error("Arquivo muito grande! O limite é de 30MB.");
-        setVideoFile(null); // Adicione esta linha
+        setVideoFile(null);
         e.target.value = "";
-        e.target.files = null; // Adicione esta linha para navegadores modernos
-
+        e.target.files = null;
         return;
       }
 
       const allowedTypes = ["video/mp4", "video/webm"];
       if (!allowedTypes.includes(file.type)) {
         toast.error("Formato inválido! Envie apenas vídeos MP4 ou WebM.");
-        setVideoFile(null); // Adicione esta linha
+        setVideoFile(null);
         e.target.value = "";
-        e.target.files = null; // Adicione esta linha
+        e.target.files = null;
         return;
       }
       setVideoFile(e.target.files[0]);
@@ -51,14 +50,12 @@ export function Video() {
 
     if (videoFile.size > MAX_SIZE) {
       toast.error("Arquivo muito grande! O limite é de 30MB.");
-      // e.target.value = ""; // Limpa o input
       return;
     }
 
     const allowedTypes = ["video/mp4", "video/webm"];
     if (!allowedTypes.includes(videoFile.type)) {
       toast.error("Formato inválido! Envie apenas vídeos MP4 ou WebM.");
-      // e.target.value = ""; // Limpa o input
       return;
     }
 
