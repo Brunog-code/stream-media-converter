@@ -11,6 +11,7 @@ export class TextToSpeechController {
   constructor(private readonly textToSpeechService: TextToSpeechService) {}
 
   async handle(req: Request, res: Response) {
+    console.log("BODY RECEBIDO:", req.body);
     try {
       const { text, gender } = req.body;
 
