@@ -102,6 +102,7 @@ export function Video() {
           <p className={styles.description}>
             Envie um video de até<strong> 30mb</strong>, e extraia o áudio.
           </p>
+
           <form className={styles.form} onSubmit={handleSubmit}>
             <label className={styles.videoInputWrapper}>
               <input
