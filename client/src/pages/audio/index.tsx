@@ -56,7 +56,6 @@ export function Audio() {
       toast.success("Audio gerado com sucesso");
       setShowModal(true);
     } catch (error) {
-      console.error(error); // <<<<<< ESSENCIAL
       if (error instanceof TypeError) {
         toast.error("Não foi possível conectar ao servidor");
       } else if (error instanceof Error) {

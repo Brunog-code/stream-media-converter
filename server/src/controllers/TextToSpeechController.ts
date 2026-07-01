@@ -30,6 +30,7 @@ export class TextToSpeechController {
 
       console.log("Stream enviado com sucesso");
     } catch (error) {
+      console.error(error);
       if (error instanceof Error) {
         return res.status(400).json({ error });
       }
