@@ -5,5 +5,7 @@ services:
     restart: always
     env_file:
       - .env
+    ports:
+    - "3333:3333"
     volumes:
       - ./tmp/videos:/app/tmp/videos
